@@ -1,5 +1,6 @@
 import { Global } from '@emotion/react';
 import * as React from 'react';
+import Helmet from 'react-helmet';
 import S from './Layout.styles';
 
 export type LayoutProps = {
@@ -9,6 +10,7 @@ export type LayoutProps = {
 const Layout: React.FC<LayoutProps> = ({ children, items = [] }) => {
   return (
     <S.Container>
+      <Helmet title='Hello Gatsby Conf 2022' />
       <Global styles={S.globalStyles} />
       <S.Header>
         <S.Tagline>

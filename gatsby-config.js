@@ -1,4 +1,13 @@
-/** @type {import('gatsby).GatsbyConfig} */
+/*eslint-env node*/
+
+// eslint-disable-next-line @typescript-eslint/no-var-requires
+const dotenv = require('dotenv');
+
+dotenv.config({
+  path: `.env.${process.env.NODE_ENV}`,
+});
+
+/** @type {import('gatsby').GatsbyConfig} */
 module.exports = {
   siteMetadata: {
     title: ``,
@@ -30,6 +39,13 @@ module.exports = {
       options: {
         fonts: [`montserrat:400,700`],
         display: 'swap',
+      },
+    },
+    {
+      resolve: '@kentico/gatsby-source-kontent',
+      options: {
+        projectId: process.env.KONTENT_PROJECTID,
+        languageCodenames: ['default'],
       },
     },
   ],
