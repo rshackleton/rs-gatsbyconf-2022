@@ -18,7 +18,9 @@
   "dependencies": {
     "@emotion/react": "^11.8.1",
     "@emotion/styled": "^11.8.1",
+    "@kentico/gatsby-kontent-components": "^8.0.0",
     "@kentico/gatsby-source-kontent": "^8.0.0",
+    "@kentico/kontent-delivery": "^11.4.0",
     "gatsby": "^4.8.0",
     "gatsby-plugin-emotion": "^7.8.0",
     "gatsby-plugin-google-fonts": "^1.0.1",

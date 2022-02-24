@@ -1,12 +1,12 @@
 import type { Elements } from '@kentico/kontent-delivery';
 import { graphql, PageProps } from 'gatsby';
 import * as React from 'react';
-import Layout from '../components/Layout/Layout';
-import RichText, { RichTextElement } from '../components/RichText/RichText';
+import Layout from '../../components/Layout/Layout';
+import RichText, { RichTextElement } from '../../components/RichText/RichText';
 
-type IndexPageProps = PageProps & {
+type BlogPostProps = PageProps & {
   data: {
-    kontentItemHomePage: {
+    kontentItemBlogPost: {
       elements: {
         content: RichTextElement;
         page_title: Elements.TextElement;
@@ -15,7 +15,7 @@ type IndexPageProps = PageProps & {
   };
 };
 
-const IndexPage: React.FC<IndexPageProps> = ({ data }) => {
+const BlogPost: React.FC<BlogPostProps> = ({ data }) => {
   return (
     <Layout
       items={[
@@ -33,17 +33,17 @@ const IndexPage: React.FC<IndexPageProps> = ({ data }) => {
         },
       ]}
     >
-      <h1>{data.kontentItemHomePage.elements.page_title.value}</h1>
-      <RichText element={data.kontentItemHomePage.elements.content} />
+      <h1>{data.kontentItemBlogPost.elements.page_title.value}</h1>
+      <RichText element={data.kontentItemBlogPost.elements.content} />
     </Layout>
   );
 };
 
-export default IndexPage;
+export default BlogPost;
 
 export const query = graphql`
-  query IndexPageQuery {
-    kontentItemHomePage {
+  query BlogPostQuery($id: String) {
+    kontentItemBlogPost(id: { eq: $id }) {
       id
       system {
         codename
@@ -56,6 +56,9 @@ export const query = graphql`
           ...RichTextFragment
         }
         page_title {
+          value
+        }
+        slug {
           value
         }
       }
