@@ -3,6 +3,7 @@ import type { ImageItem } from '@kentico/gatsby-kontent-components/dist/image-el
 import { graphql, Link } from 'gatsby';
 import type { DomElement } from 'htmlparser2';
 import * as React from 'react';
+import Banner from '../Banner/Banner';
 
 export type RichTextElement = {
   images?: ImageItem[];
@@ -39,7 +40,13 @@ const RichText: React.FC<RichTextProps> = ({ element }) => {
         return <Link to={`/`}>{domNode.children?.[0]?.data}</Link>;
       }}
       resolveLinkedItem={(linkedItem: any) => {
-        return <pre>{JSON.stringify(linkedItem, undefined, 2)}</pre>;
+        switch (linkedItem.system.type) {
+          case 'section___banner':
+            return <Banner {...linkedItem} />;
+
+          default:
+            return <pre>{JSON.stringify(linkedItem, undefined, 2)}</pre>;
+        }
       }}
       resolveDomNode={(domNode: DomElement, domToReact: Function) => {
         if (domNode.name === 'table') {
@@ -72,6 +79,9 @@ export const RichTextFragment = graphql`
       system {
         codename
         type
+      }
+      ... on kontent_item_section___banner {
+        ...BannerFragment
       }
     }
     value

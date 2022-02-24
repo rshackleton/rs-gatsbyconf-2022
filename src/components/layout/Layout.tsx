@@ -14,7 +14,7 @@ const Layout: React.FC<LayoutProps> = ({ children, items = [] }) => {
       <Global styles={S.globalStyles} />
       <S.Header>
         <S.Tagline>
-          Hello <em>Gatsby Conf 2022</em>!
+          Gatsby Conf <em>2022</em>
         </S.Tagline>
 
         {items.length > 0 && (

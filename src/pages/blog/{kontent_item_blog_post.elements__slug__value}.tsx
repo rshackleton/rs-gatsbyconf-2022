@@ -1,6 +1,7 @@
 import type { Elements } from '@kentico/kontent-delivery';
 import { graphql, PageProps } from 'gatsby';
 import * as React from 'react';
+import { Helmet } from 'react-helmet';
 import Layout from '../../components/Layout/Layout';
 import RichText, { RichTextElement } from '../../components/RichText/RichText';
 
@@ -33,6 +34,9 @@ const BlogPost: React.FC<BlogPostProps> = ({ data }) => {
         },
       ]}
     >
+      <Helmet>
+        <title>{data.kontentItemBlogPost.elements.page_title.value}</title>
+      </Helmet>
       <h1>{data.kontentItemBlogPost.elements.page_title.value}</h1>
       <RichText element={data.kontentItemBlogPost.elements.content} />
     </Layout>

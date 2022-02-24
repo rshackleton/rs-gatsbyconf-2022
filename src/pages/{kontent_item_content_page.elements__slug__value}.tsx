@@ -1,6 +1,7 @@
 import type { Elements } from '@kentico/kontent-delivery';
 import { graphql, PageProps } from 'gatsby';
 import * as React from 'react';
+import { Helmet } from 'react-helmet';
 import Layout from '../components/Layout/Layout';
 import RichText, { RichTextElement } from '../components/RichText/RichText';
 
@@ -33,7 +34,9 @@ const ContentPage: React.FC<ContentPageProps> = ({ data }) => {
         },
       ]}
     >
-      <h1>{data.kontentItemContentPage.elements.page_title.value}</h1>
+      <Helmet>
+        <title>{data.kontentItemContentPage.elements.page_title.value}</title>
+      </Helmet>
       <RichText element={data.kontentItemContentPage.elements.content} />
     </Layout>
   );
