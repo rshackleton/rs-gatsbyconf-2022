@@ -3,7 +3,8 @@ import type { ImageItem } from '@kentico/gatsby-kontent-components/dist/image-el
 import { graphql, Link } from 'gatsby';
 import type { DomElement } from 'htmlparser2';
 import * as React from 'react';
-import Banner from '../Banner/Banner';
+import Hero from '../Hero/Hero';
+import SplitContent from '../SplitContent/SplitContent';
 
 export type RichTextElement = {
   images?: ImageItem[];
@@ -41,8 +42,11 @@ const RichText: React.FC<RichTextProps> = ({ element }) => {
       }}
       resolveLinkedItem={(linkedItem: any) => {
         switch (linkedItem.system.type) {
-          case 'section___banner':
-            return <Banner {...linkedItem} />;
+          case 'section___hero':
+            return <Hero {...linkedItem} />;
+
+          case 'section___split_content':
+            return <SplitContent {...linkedItem} />;
 
           default:
             return <pre>{JSON.stringify(linkedItem, undefined, 2)}</pre>;
@@ -80,8 +84,11 @@ export const RichTextFragment = graphql`
         codename
         type
       }
-      ... on kontent_item_section___banner {
-        ...BannerFragment
+      ... on kontent_item_section___hero {
+        ...HeroFragment
+      }
+      ... on kontent_item_section___split_content {
+        ...SplitContentFragment
       }
     }
     value

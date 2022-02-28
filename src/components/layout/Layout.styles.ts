@@ -30,7 +30,7 @@ const Header = styled.header`
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 3rem 1rem;
+  padding: 2rem 1rem;
 `;
 
 const Tagline = styled.span`
@@ -71,7 +71,7 @@ const NavLink = styled.a`
 `;
 
 const Main = styled.main`
-  padding: 1rem 1rem;
+  padding: 0 1rem;
 `;
 
 const Footer = styled.footer`
